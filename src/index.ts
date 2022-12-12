@@ -4,11 +4,10 @@ import configExpress from './config/express';
 import configDb from './config/database';
 import routes from './routes';
 
-
-
 dotenv.config();
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8080;
 const app = express();
+
 configExpress(app);
 configDb();
 routes(app);
