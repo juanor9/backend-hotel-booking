@@ -95,3 +95,4 @@ UserSchema.pre('save', async function save(next: Function) {
 const User = model<UserDocument>('User', UserSchema);
 
 export default User;
+

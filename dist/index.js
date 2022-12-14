@@ -22,15 +22,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -40,32 +31,12 @@ const express_1 = __importDefault(require("express"));
 const express_2 = __importDefault(require("./config/express"));
 const database_1 = __importDefault(require("./config/database"));
 const routes_1 = __importDefault(require("./routes"));
-const booking_controller_1 = require("./api/booking/booking.controller");
 dotenv.config();
 const port = process.env.PORT || 8080;
 const app = (0, express_1.default)();
 (0, express_2.default)(app);
 (0, database_1.default)();
 (0, routes_1.default)(app);
-app.get('api/bookings', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const bookings = yield (0, booking_controller_1.getAllBookings)();
-        res.status(200).json(bookings);
-    }
-    catch (error) {
-        res.status(500).json(error);
-    }
-}));
-app.get('api/bookings/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    try {
-        const bookings = yield (0, booking_controller_1.getBookingById)(id);
-        res.status(200).json(bookings);
-    }
-    catch (error) {
-        res.status(500).json(error);
-    }
-}));
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
