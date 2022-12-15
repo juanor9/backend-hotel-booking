@@ -16,6 +16,16 @@ export interface HotelDocument extends Document{
   updatedAt: Date;
 }
 
+const geoLocationSchema = new Schema({
+  type:{
+    type: String,
+    default: 'Point'
+  },
+  coordinates:{
+    type: Array,
+  }
+})
+
 const hotelLocationSchema = new Schema({
   country: {
     type: String,
@@ -29,15 +39,11 @@ const hotelLocationSchema = new Schema({
     type: String,
     require: true,
   },
-  latitude: {
-    type: String,
-    require: true,
+  geoLocation :{
+    type: geoLocationSchema
+  }
   },
-  longitude: {
-    type: String,
-    require: true,
-  },
-});
+);
 
 const hotelContactSchema = new Schema({
   phone: {
