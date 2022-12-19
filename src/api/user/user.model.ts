@@ -7,7 +7,7 @@ export interface UserDocument extends Document {
   email: string;
   password: string;
   profilePic?: string;
-  birthday: Date;
+  birthday?: Date;
   gender?: string;
   address?: string;
   city?: string;
@@ -53,7 +53,6 @@ const UserSchema = new Schema ({
   },
   birthday: {
     type: Date,
-    required: true,
   },
   gender: {
     type: String,
