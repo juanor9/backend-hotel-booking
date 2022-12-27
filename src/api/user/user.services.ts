@@ -22,5 +22,6 @@ export function deleteUser(id: string) {
 }
 
 export function getUserFilter(filter: FilterQuery<UserDocument>) {
-  return User.findOne(filter);
+  const user = User.findOne(filter);
+  return user;
 }
