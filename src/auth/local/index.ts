@@ -2,21 +2,23 @@ import { Router } from 'express';
 
 import {
     handleLoginUser,
+    handleVerifyUserEmail
   } from "./local.controller";
 
 const router = Router();
 
 //Login
-// api/auth/local/login
+// auth/local/login
 router.post("/login", handleLoginUser);
 
 //Change password
-// api/auth/change-password
+// auth/local/change-password
 
 //Forgot password
-// api/auth/forgot-password
+// auth/local/forgot-password
 
 //Verify email
-// api/auth/verify-email
+// auth/local/activate/*hexToken*
+router.get("/activate/:token", handleVerifyUserEmail);
 
 export default router;
