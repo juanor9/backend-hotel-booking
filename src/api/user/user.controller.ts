@@ -71,7 +71,7 @@ export async function handleDeleteUser(req: Request, res: Response) {
 
 export async function handleUpdateUser(req: Request, res: Response) {
   const { id } = req.params;
-  const data = req.body;  
+  const data = req.body;
 
   try {
     const user = await updateUser(id, data);

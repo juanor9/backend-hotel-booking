@@ -8,6 +8,7 @@ export interface UserDocument extends Document {
   email: string;
   password: string;
   profilePic?: string;
+  phone?:number;
   birthday?: Date;
   gender?: string;
   address?: string;
@@ -58,10 +59,12 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: true,
-      min: 10,
     },
     profilePic: {
       type: String,
+    },
+    phone: {
+      type: Number,
     },
     birthday: {
       type: Date,
@@ -108,10 +111,10 @@ UserSchema.pre("save", async function save(next: Function) {
 
 // Virtuals
 UserSchema.virtual('profile').get(function profile() {
-  const {name, role, email, profilePic, birthday, gender, address, city, zipCode, payingMethods } = this;
+  const {_id, name, role, email} = this;
 
   return {
-    name, role, email, profilePic, birthday, gender, address, city, zipCode, payingMethods
+    _id, name, role, email
   };
 
 });

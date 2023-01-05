@@ -14,6 +14,6 @@ const router = Router();
 router.get("/", handleGetUsers);
 router.get("/:id", handleGetUser);
 router.post("/", handleCreateUser);
-router.patch("/:id", isAuthenticated, handleUpdateUser);
+router.patch("/:id", handleUpdateUser);
 router.delete("/:id", isAuthenticated, handleDeleteUser);
 export default router;
