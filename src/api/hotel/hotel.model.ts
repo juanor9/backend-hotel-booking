@@ -1,32 +1,40 @@
 import { Schema, model, Document } from "mongoose";
 
+
 export interface HotelDocument extends Document{
   name: String,
-  images: Array<String>,
-  location: Object,
-  contact: Object,
+  imageProfile?: String,
+  images?: Array<String>,
+  country: String,
+  city: String,
+  address: String,
+  geoLocation?: Array<Number>,
+  phone: Number,
+  email: String,
+  socialMedia?: Array<String>,
   about: String,
   pricePerNight: Number,
-  features: Array<String>,
+  offerPrice?: Number,
+  feature1: String,
+  feature2: String,
   checkin: String,
   checkout: String,
-  offers: Array<Object>,
-  rooms: Array<Object>,
-  createdAt: Date;
-  updatedAt: Date;
+  rooms?: Array<Object>,
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-const geoLocationSchema = new Schema({
-  type:{
+const hotelSchema = new Schema({
+  name: {
     type: String,
-    default: 'Point'
+    require: true,
   },
-  coordinates:{
+  imageProfile: {
+    type: String,
+  },
+  images: {
     type: Array,
-  }
-})
-
-const hotelLocationSchema = new Schema({
+  },
   country: {
     type: String,
     require: true,
@@ -39,13 +47,15 @@ const hotelLocationSchema = new Schema({
     type: String,
     require: true,
   },
-  geoLocation :{
-    type: geoLocationSchema
-  }
+  geoLocation: {
+    type:{
+      type: String,
+      default: 'Point'
+    },
+    coordinates:{
+      type: [Number],
+    }
   },
-);
-
-const hotelContactSchema = new Schema({
   phone: {
     type: String,
   },
@@ -55,93 +65,6 @@ const hotelContactSchema = new Schema({
   socialMedia: {
     type: Array,
   },
-});
-
-const offerSchema = new Schema({
-  active: {
-    type: Boolean,
-    require: true,
-  },
-  offerPrice: {
-    type: Number,
-    require: true,
-  },
-});
-
-const roomAmenitiesSchema = new Schema({
-  bedKind: {
-    type: String,
-    require: true,
-  },
-  tv: {
-    type: String,
-  },
-  couch: {
-    type: Boolean,
-  },
-  poolView: {
-    type: Boolean,
-  },
-  shower: {
-    type: Boolean,
-  },
-});
-
-const roomSchema = new Schema({
-  _roomId: {
-    type: Schema.Types.ObjectId,
-    require: true,
-  },
-  guestNumber: {
-    type: Number,
-    require: true,
-    min: 1,
-  },
-  name: {
-    type: String,
-    require: true,
-  },
-  about: {
-    type: String,
-  },
-  roomImages: {
-    type: Array,
-    require: true,
-  },
-  features: {
-    type: Array,
-  },
-  price: {
-    type: Number,
-    require: true,
-  },
-  amenities: {
-    type: roomAmenitiesSchema,
-    require: true,
-  },
-  offers: [
-    {
-      type: offerSchema,
-    },
-  ],
-});
-
-const hotelSchema = new Schema({
-  name: {
-    type: String,
-    require: true,
-  },
-  images: {
-    type: Array,
-    require: true,
-  },
-  location: {
-    type: hotelLocationSchema,
-    require: true,
-  },
-  contact: {
-    type: hotelContactSchema,
-  },
   about: {
     type: String,
     require: true,
@@ -150,8 +73,16 @@ const hotelSchema = new Schema({
     type: Number,
     require: true,
   },
-  features: {
-    type: Array,
+  offerPrice: {
+    type: Number,
+  },
+  feature1: {
+    type: String,
+    require: true,
+  },
+  feature2: {
+    type: String,
+    require: true,
   },
   checkin: {
     type: String,
@@ -161,14 +92,9 @@ const hotelSchema = new Schema({
     type: String,
     require: true,
   },
-  offers: [
-    {
-      type: offerSchema,
-    },
-  ],
   rooms: [{
-    type: roomSchema,
-    require: true,
+    type: Schema.Types.ObjectId,
+    ref: 'Room',
   }]
 }, {timestamps: true,});
 

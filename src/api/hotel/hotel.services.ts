@@ -6,7 +6,7 @@ export function getAllHotels() {
 }
 
 export function getHotelById(id: string) {
-  return Hotel.findById(id)
+  return Hotel.findById(id).populate("rooms")
 }
 
 export function createHotel (input: DocumentDefinition<Omit<HotelDocument, 'createdAt' | 'updatedAt'>>,){
