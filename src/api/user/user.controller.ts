@@ -6,6 +6,7 @@ import {
   createUser,
   updateUser,
   deleteUser,
+  getUserFilter,
 } from "./user.services";
 import crypto from 'crypto';
 
@@ -28,6 +29,18 @@ export async function handleGetUser(req: Request, res: Response) {
     return res.status(200).json(user);
   } catch (error) {
     return res.status(500).json(error);
+  }
+}
+export async function handleGetUserByFilter(req: Request, res: Response) {
+  try {
+    if (!req.query.email) {
+      return res.status(400).json({ message: "Email is required." });
+    }
+    const filter = { email: req.query.email };
+    const user = await getUserFilter(filter);
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: 'Error searching for user.' });
   }
 }
 

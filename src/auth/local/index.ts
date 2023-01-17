@@ -2,7 +2,9 @@ import { Router } from 'express';
 
 import {
     handleLoginUser,
-    handleVerifyUserEmail
+    handleVerifyUserEmail,
+    handleResetPassword,
+    handleVerifyPasswordReset,
   } from "./local.controller";
 
 const router = Router();
@@ -14,8 +16,11 @@ router.post("/login", handleLoginUser);
 //Change password
 // auth/local/change-password
 
-//Forgot password
-// auth/local/forgot-password
+//Reset password
+// auth/local/password-reset
+router.post("/password-reset", handleResetPassword)
+// auth/local/password-reset/validate
+router.post("/password-reset/:token", handleVerifyPasswordReset)
 
 //Verify email
 // auth/local/activate/*hexToken*
