@@ -6,7 +6,7 @@ export function getUsers() {
 }
 
 export function getUserById(id: string) {
-  return User.findById(id);
+  return User.findById(id).populate("booking");
 }
 
 export function createUser(user: DocumentDefinition<Omit<UserDocument, 'createdAt' | 'updatedAt'>>) {

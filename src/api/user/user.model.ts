@@ -15,6 +15,7 @@ export interface UserDocument extends Document {
   city?: string;
   zipCode?: number;
   payingMethods?: [Object];
+  booking: [object];
   createdAt: Date;
   updatedAt: Date;
 
@@ -92,6 +93,10 @@ const UserSchema = new Schema(
         type: payingMethodsSchema,
       },
     ],
+    booking: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Booking',
+    }]
   },
   {
     timestamps: true,

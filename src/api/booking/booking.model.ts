@@ -5,6 +5,8 @@ export interface BookingDocument extends Document {
   checkOutDate: Date,
   guestsNumber: Number,
   city?: String,
+  pricePerNight?: Number,
+  offerPrice?: Number,
   paymentDetail?: Object,
 }
 
@@ -39,6 +41,12 @@ const BookingSchema = new Schema({
     required: true,
   },
   city: {
+    type: String,
+  },
+  offerPrice: {
+    type: String,
+  },
+  pricePerNight: {
     type: String,
   },
   paymentDetail: {
