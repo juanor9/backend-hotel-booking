@@ -1,6 +1,6 @@
+import cors from 'cors';
 import express, { Application } from 'express';
 import morgan from 'morgan';
-import cors from 'cors';
 
 function configExpress(app:Application): void {
   app.use(cors());
