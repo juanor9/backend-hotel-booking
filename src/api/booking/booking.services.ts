@@ -2,7 +2,7 @@ import { DocumentDefinition } from "mongoose";
 import Booking, { BookingDocument } from "./booking.model";
 
 export function getAllBookings() {
-  return Booking.find();
+  return Booking.find().populate("idHotel");
 }
 
 export function getBookingById(id: string) {
