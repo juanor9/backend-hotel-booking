@@ -90,7 +90,7 @@ export async function handleResetPassword(
       templateId: "d-0f65e09fc1fe45e6a891fda451b57e77",
       dynamic_template_data: {
         firstName: user.name,
-        url: `http://localhost:3000/activate/new-password/${hash}`,
+        url: `https://frontend-hotel-booking-ashy.vercel.app/activate/new-password/${hash}`,
       },
     };
     await sendMailSendGrid(message);

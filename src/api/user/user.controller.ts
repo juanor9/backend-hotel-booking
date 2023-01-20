@@ -61,7 +61,7 @@ export async function handleCreateUser(req: Request, res: Response) {
       templateId: 'd-0f65e09fc1fe45e6a891fda451b57e77',
       dynamic_template_data:{
         firstName:user.name,
-        url: `http://localhost:3000/activate/${hash}`
+        url: `https://frontend-hotel-booking-ashy.vercel.app/activate/${hash}`
       }
     }
     await sendMailSendGrid(message);
