@@ -9,7 +9,7 @@ export interface HotelDocument extends Document{
   city: String,
   address: String,
   geoLocation?: Array<Number>,
-  phone: Number,
+  phone: String,
   email: String,
   socialMedia?: Array<String>,
   about: String,
